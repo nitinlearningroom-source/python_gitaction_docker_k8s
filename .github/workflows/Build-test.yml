@@ -49,7 +49,7 @@ jobs:
                file: ./Dockerfile
                push: true
                tags: |
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo:latest
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo:${{ github.sha }}
+                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:latest
+                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
 
                 
