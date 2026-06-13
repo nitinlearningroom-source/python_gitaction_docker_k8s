@@ -67,13 +67,12 @@ jobs:
 
           - name: Update deployment
             run: |
-              kubectl set image deployment/flash-demo1 \
+              kubectl set image deployment/flash-demo \
               flash=${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
 
           - name: Verify rollout
             run: |
-              kubectl rollout status deployment/flash-demo1
-
+              kubectl rollout status deployment/flash-demo
 
 
                 
