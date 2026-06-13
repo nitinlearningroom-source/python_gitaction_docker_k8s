@@ -60,14 +60,16 @@ jobs:
           - name: Configure kubectl
             run: |
                 echo "Configuring kubectl..."
-                mkdir -p $HOME/.kube
+                if (!(Test-Path "$HOME\.kube")) {
+                    New-Item -ItemType Directory -Path "$HOME\.kube"
+                }
                 echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
                 chmod 600 $HOME/.kube/config
                 kubectl config view
-          - name: Check secret size
+          - name: Verify Kubernetes
             run: |
-                echo "${{ secrets.KUBE_CONFIG }}" | wc -c
-                
+                kubectl config current-context
+                kubectl get nodes
           - name: Test cluster access
             run: |
               kubectl config current-context
