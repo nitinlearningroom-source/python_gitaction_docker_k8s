@@ -55,12 +55,24 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
-          - name: Deploy to K8s
+          - uses: actions/checkout@v4
+
+          - name: Configure kubectl
             run: |
-                echo "Deploying to Kubernetes cluster..."
-                kubectl apply -f deployment.yaml
-                kubectl apply -f service.yaml
-                echo "Deployment applied successfully."
+                echo "Configuring kubectl..."
+                mkdir -p $HOME/.kube
+                echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+                chmod 600 $HOME/.kube/config
+                kubectl config view
+
+          - name: Update deployment
+            run: |
+              kubectl set image deployment/flask-deployment \
+              flask=yourusername/flask-app:${{ github.sha }}
+
+          - name: Verify rollout
+            run: |
+              kubectl rollout status deployment/flask-deployment
 
 
 
