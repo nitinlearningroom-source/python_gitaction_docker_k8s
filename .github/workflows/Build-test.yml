@@ -77,8 +77,7 @@ jobs:
 
           - name: Update deployment
             run: |
-              kubectl set image deployment/flash-demo \
-              flash=${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
+             kubectl set image deployment/flask-demo flash=nitindockerlearning/flash-demo1:${{ github.sha }}
 
           - name: Verify rolloutgit ad
             run: |
