@@ -1,4 +1,4 @@
-name  : Build-Test
+name  : Build and Deploy
 on:  
     push:
         branches: [ main ]
@@ -51,5 +51,17 @@ jobs:
                tags: |
                  ${{ secrets.DOCKER_USERNAME }}/flash-demo1:latest
                  ${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
+   Deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+          - name: Deploy to K8s
+            run: |
+                echo "Deploying to Kubernetes cluster..."
+                kubectl apply -f deployment.yaml
+                kubectl apply -f service.yaml
+                echo "Deployment applied successfully."
+
+
 
                 
