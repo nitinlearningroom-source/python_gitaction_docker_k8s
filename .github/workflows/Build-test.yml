@@ -61,7 +61,7 @@ jobs:
             run: |
                 echo "Configuring kubectl..."
                 mkdir -p $HOME/.kube
-                echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+                echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
                 chmod 600 $HOME/.kube/config
                 kubectl config view
           - name: Check secret size
