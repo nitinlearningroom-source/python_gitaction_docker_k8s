@@ -64,6 +64,10 @@ jobs:
                 echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
                 chmod 600 $HOME/.kube/config
                 kubectl config view
+          - name: Check secret size
+            run: |
+                echo "${{ secrets.KUBE_CONFIG }}" | wc -c
+                
           - name: Test cluster access
             run: |
               kubectl config current-context
