@@ -81,7 +81,7 @@ jobs:
 
           - name: Verify rolloutgit ad
             run: |
-              kubectl rollout status deployment/flash-demo
+              kubectl rollout status deployment/flask-demo
 
 
                 
