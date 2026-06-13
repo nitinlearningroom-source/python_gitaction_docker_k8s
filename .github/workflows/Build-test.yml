@@ -64,13 +64,18 @@ jobs:
                 echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
                 chmod 600 $HOME/.kube/config
                 kubectl config view
+          - name: Test cluster access
+            run: |
+              kubectl config current-context
+              kubectl cluster-info
+              kubectl get nodes
 
           - name: Update deployment
             run: |
-              kubectl set image deployment/flash-demo1 \
+              kubectl set image deployment/flash-demo \
               flash=${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
 
-          - name: Verify rollout
+          - name: Verify rolloutgit ad
             run: |
               kubectl rollout status deployment/flash-demo
 
