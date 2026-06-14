@@ -15,6 +15,23 @@ spec:
     spec:
       containers:
       - name: flask-demo
-        image: nitindockerlearning/flash-demo1:latest
+        image: nitindockerlearning/flash-demo1:latest # Check if "flash" should be "flask"
         ports:
         - containerPort: 5000
+        # --- FIXED: env must be indented under the container list item ---
+        env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: flash-config
+              key: APP_NAME
+        - name: ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: flash-config
+              key: ENVIRONMENT
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: flash-config
+              key: MESSAGE

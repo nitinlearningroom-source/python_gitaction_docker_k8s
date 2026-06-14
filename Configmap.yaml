@@ -5,7 +5,7 @@ metadata:
   name: flash-config
   namespace: test
 
-  data:
-    APP_NAME: "Flash-Demo"
-    ENVIRONMENT: "Test"
-    MESSAGE: "Welcome to Flash-Demo Application from ConfigMap"
+data:
+  APP_NAME: "Flash-Demo"
+  ENVIRONMENT: "Test"
+  MESSAGE: "Welcome to Flash-Demo Application from ConfigMap"

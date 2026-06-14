@@ -1,11 +1,15 @@
+import os
 from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
-
+@app.route("/")
 def home():
-    return "<h1>First Docker and K8s application from GitHub Actions 06/14 </h1>"
+    return f"""
+    <h1>{os.getenv('APP_NAME')}</h1>
+    <h2>{os.getenv('ENVIRONMENT')}</h2>
+    <p>{os.getenv('MESSAGE')}</p>
+    """
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
