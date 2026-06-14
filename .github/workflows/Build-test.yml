@@ -62,6 +62,7 @@ jobs:
             run: |
               kubectl apply -f deployment.yaml -n test
               kubectl apply -f service.yaml -n test
+              kubectl apply -f configmap-test.yaml
           - name: Configure kubectl
             run: |
                 echo "Configuring kubectl..."
