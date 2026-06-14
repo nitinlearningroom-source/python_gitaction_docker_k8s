@@ -87,7 +87,8 @@ jobs:
 
           - name: Verify rollout git ad
             run: |
-              kubectl rollout restart status deployment/flask-demo -n test
+              kubectl rollout status deployment/flask-demo -n test
+              kubectl rollout restart deployment/flask-demo -n test
 
 
                 
