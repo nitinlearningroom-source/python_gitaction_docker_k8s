@@ -66,9 +66,10 @@ jobs:
             run: |
               echo "Checking Kubernetes context..."
               kubectl config current-context
+              
           - name: Create test namespace
             run: |
-              kubectl create namespace test || echo "Namespace 'test' already exists"
+               kubectl crate namespace test --dry-run=client -o yaml | kubectl apply -f -
 
           - name: Deploy to Test Namespace
             run: |
