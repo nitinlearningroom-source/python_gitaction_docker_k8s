@@ -1,3 +1,7 @@
+# This is a GitHub Actions workflow configuration file that defines a CI/CD pipeline for building, testing, and deploying a Flask application using Docker and Kubernetes.
+# The workflow is triggered on pushes and pull requests to the main branch. It includes steps for setting up Python, installing dependencies, running tests, building and pushing a Docker image,
+# and deploying the application to a Kubernetes cluster in a test namespace.
+
 name  : Build and Deploy
 on:  
     push:

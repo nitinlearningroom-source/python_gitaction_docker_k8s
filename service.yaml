@@ -1,3 +1,6 @@
+# This is a Kubernetes Service configuration file that defines a Service named "flask-service" in the "test" namespace. The Service selects pods with the label "app: flask-demo" 
+# and exposes port 80, which forwards to target port 5000 on the selected pods. The Service type is set to NodePort, 
+# allowing it to be accessed externally on a dynamically assigned port on each node in the cluster.
 apiVersion: v1
 kind: Service
 metadata:

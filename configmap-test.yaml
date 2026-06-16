@@ -1,3 +1,6 @@
+# This is a Kubernetes ConfigMap configuration file that defines a ConfigMap named "flash-config" in the "test" namespace. It contains key-value pairs for application configuration, 
+# including the application name, environment, and a welcome message.
+
 apiVersion: v1
 kind: ConfigMap
 

@@ -1,3 +1,6 @@
+# This is a Kubernetes deployment configuration file for a Flask application named "flask-demo". It defines a deployment with 3 replicas, using the specified Docker image. 
+#The environment variables for the application are sourced from a ConfigMap named "flash-config". Note: The image name contains "flash-demo1", which may be a typo and should be verified
+# if it should be "flask-demo1".
 apiVersion: apps/v1
 kind: Deployment
 metadata:
