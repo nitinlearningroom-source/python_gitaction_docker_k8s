@@ -11,4 +11,4 @@ metadata:
 data:
   APP_NAME: "Flash-Demo"
   ENVIRONMENT: "Test"
-  MESSAGE: "Welcome to Flash-Demo Application from ConfigMap in Test Namespace 06/16"
+  MESSAGE: "Welcome to Flash-Demo Application from ConfigMap in Test Namespace 06/18"
