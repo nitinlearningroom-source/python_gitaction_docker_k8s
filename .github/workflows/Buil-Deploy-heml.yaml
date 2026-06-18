@@ -78,8 +78,10 @@ jobs:
                 echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
                 kubectl config view
 
-          - name: Setup Helm
-            uses: azure/setup-helm@v4
+          - name: Verify helm installation
+            run: |
+                echo "Verifying Helm installation..."
+                helm version   
 
           - name: Create test namespace
             run: |
