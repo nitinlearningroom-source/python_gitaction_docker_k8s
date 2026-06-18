@@ -60,6 +60,24 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "flask-demo-chart.fullname" . }}-config
+                  key: APP_NAME
+
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "flask-demo-chart.fullname" . }}-config
+                  key: ENVIRONMENT
+
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "flask-demo-chart.fullname" . }}-config
+                  key: MESSAGE
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
