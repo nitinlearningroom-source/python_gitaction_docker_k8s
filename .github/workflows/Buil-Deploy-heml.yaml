@@ -90,3 +90,7 @@ jobs:
           - name: Deploy helm
             run: |
                 helm upgrade --install flask-demo-chart ./flask-demo-chart --namespace test-helm
+
+          - name: Rollout and Restart deployment 
+            run: |
+                kubectl rollout restart deployment/flask-demo-flask-demo-chart -n test
