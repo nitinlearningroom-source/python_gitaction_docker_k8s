@@ -5,7 +5,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-demo
-  namespace: test
+  namespace: dbcon
 spec:
   replicas: 3
   selector:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: flask-demo
-        image: nitindockerlearning/flash-demo1:latest # Check if "flash" should be "flask"
+        image: nitindockerlearning/flash-demo1:v2 # Check if "flash" should be "flask"
         ports:
         - containerPort: 5000
         # --- FIXED: env must be indented under the container list item ---

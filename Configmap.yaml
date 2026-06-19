@@ -3,7 +3,7 @@ kind: ConfigMap
 
 metadata:
   name: flash-config
-  namespace: test
+  namespace: dbcon
 
 data:
   APP_NAME: "Flash-Demo"
