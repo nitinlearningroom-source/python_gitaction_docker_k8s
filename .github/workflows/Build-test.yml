@@ -3,7 +3,12 @@
 # and deploying the application to a Kubernetes cluster in a test namespace.
 
 name  : Build and Deploy
-on:  
+on: 
+    push:
+        branches: [ db_conn_with_postgreSQL ]
+    pull_request:
+        branches: [ db_conn_with_postgreSQL ]
+
     workflow_dispatch:
 
 jobs:
@@ -66,13 +71,13 @@ jobs:
 
           - name: Create test namespace
             run: |
-               kubectl create namespace test --dry-run=client -o yaml | kubectl apply -f -
+               kubectl create namespace dbcon --dry-run=client -o yaml | kubectl apply -f -
 
           - name: Deploy to Test Namespace
             run: |
-              kubectl apply -f deployment.yaml -n test
-              kubectl apply -f service.yaml -n test
-              kubectl apply -f configmap-test.yaml
+              kubectl apply -f deployment.yaml -n dbcon
+              kubectl apply -f service.yaml -n dbcon  
+              kubectl apply -f postgres-secret.yaml  
           - name: Configure kubectl
             run: |
                 echo "Configuring kubectl..."
@@ -93,12 +98,12 @@ jobs:
 
           - name: Update deployment
             run: |
-             kubectl set image deployment/flask-demo flask-demo=nitindockerlearning/postgreSQL-demo:${{ github.sha }} -n test
+             kubectl set image deployment/postgreSQL postgreSQL=nitindockerlearning/postgreSQL-demo:${{ github.sha }} -n test
 
           - name: Verify rollout git ad
             run: |
-              kubectl rollout status deployment/flask-demo -n test
-              kubectl rollout restart deployment/flask-demo -n test
+              kubectl rollout status deployment/postgreSQL -n test
+              kubectl rollout restart deployment/postgreSQL -n test
 
 
                 

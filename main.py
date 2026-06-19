@@ -1,15 +1,26 @@
-import os
 from flask import Flask
+import psycopg2
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
-    return f"""
-    <h1>{os.getenv('APP_NAME')}</h1>
-    <h2>{os.getenv('ENVIRONMENT')}</h2>
-    <p>{os.getenv('MESSAGE')}</p>
-    """
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    conn = psycopg2.connect(
+        host="postgres-service",
+        database="sampledb",
+        user="postgres",
+        password="postgres123"
+    )
+
+    cur = conn.cursor()
+
+    cur.execute(
+        "SELECT text FROM messages LIMIT 1"
+    )
+
+    row = cur.fetchone()
+
+    conn.close()
+
+    return row[0]
