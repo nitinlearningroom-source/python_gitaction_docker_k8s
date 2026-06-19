@@ -5,7 +5,7 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: flash-config
+  name: {{ include "flask-demo-chart.fullname" . }}-config
   namespace: test
 
 data:
