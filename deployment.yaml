@@ -4,23 +4,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgreSQL-demo
+  name: postgresql-demo
   namespace: dbcon
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: postgreSQL-demo
+      app: postgresql-demo
   template:
     metadata:
       labels:
-        app: postgreSQL-demo
+        app: postgresql-demo
     spec:
       containers:
-      - name: postgreSQL-demo
-        image: nitindockerlearning/postgreSQL-demo:latest # Check if "flash" should be "postgreSQL"
+      - name: postgresql-demo
+        image: nitindockerlearning/postgresql-demo:latest # Check if "flash" should be "postgreSQL"
         ports:
-        - containerPort: 5000
+        - containerPort: 5432
         # --- FIXED: env must be indented under the container list item ---
         env:
         - name: POSTGRES_USER

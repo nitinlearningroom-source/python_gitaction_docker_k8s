@@ -1,14 +1,14 @@
-# This is a Kubernetes Service configuration file that defines a Service named "flask-service" in the "test" namespace. The Service selects pods with the label "app: flask-demo" 
+# This is a Kubernetes Service configuration file that defines a Service named "postgreSQL-service" in the "test" namespace. The Service selects pods with the label "app: postgreSQL-demo" 
 # and exposes port 80, which forwards to target port 5000 on the selected pods. The Service type is set to NodePort, 
 # allowing it to be accessed externally on a dynamically assigned port on each node in the cluster.
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-service
+  name: postgresql-service
   namespace: dbcon
 spec:
   selector:
-    app: flask-demo
+    app: postgresql-demo
   ports:
   - port: 80
     targetPort: 5000
