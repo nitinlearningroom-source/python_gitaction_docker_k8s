@@ -6,7 +6,7 @@ kind: ConfigMap
 
 metadata:
   name: {{ include "flask-demo-chart.fullname" . }}-config
-  namespace: test
+  namespace: {{ .Release.Namespace }}
 
 data:
   APP_NAME: "Flash-Demo"

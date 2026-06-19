@@ -6,7 +6,7 @@ kind: ConfigMap
 
 metadata:
   name: flash-config
-  namespace: test
+  namespace: { ? { .Release.Namespace } }
 
 data:
   APP_NAME: "Flash-Demo"

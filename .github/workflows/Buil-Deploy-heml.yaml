@@ -93,4 +93,5 @@ jobs:
 
           - name: Rollout and Restart deployment 
             run: |
-                kubectl rollout restart deployment/flask-demo-flask-demo-chart -n test
+                kubectl rollout restart deployment flask-demo-chart -n test-helm
+                kubectl rollout status deployment flask-demo-chart -n test-helm  
