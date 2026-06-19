@@ -2,10 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: flash-config
-  namespace: test
+  name: postgreSQL-config
+  namespace: dbcon
 
 data:
-  APP_NAME: "Flash-Demo"
-  ENVIRONMENT: "Test"
-  MESSAGE: "Welcome to Flash-Demo Application from ConfigMap on 0616"
+  APP_NAME: "postgreSQL-Demo"
+  ENVIRONMENT: "dbcon"
+  MESSAGE: "Welcome to postgreSQL-Demo Application from ConfigMap on 0616"

@@ -50,8 +50,8 @@ jobs:
                file: ./Dockerfile
                push: true
                tags: |
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:latest
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
+                 ${{ secrets.DOCKER_USERNAME }}/postgreSQL-demo:latest
+                 ${{ secrets.DOCKER_USERNAME }}/postgreSQL-demo:${{ github.sha }}
    Deploy_to_test:
         needs: build
         runs-on: self-hosted
@@ -93,7 +93,7 @@ jobs:
 
           - name: Update deployment
             run: |
-             kubectl set image deployment/flask-demo flask-demo=nitindockerlearning/flash-demo1:${{ github.sha }} -n test
+             kubectl set image deployment/flask-demo flask-demo=nitindockerlearning/postgreSQL-demo:${{ github.sha }} -n test
 
           - name: Verify rollout git ad
             run: |

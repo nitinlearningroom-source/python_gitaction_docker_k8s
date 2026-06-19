@@ -1,24 +1,24 @@
-# This is a Kubernetes deployment configuration file for a Flask application named "flask-demo". It defines a deployment with 3 replicas, using the specified Docker image. 
+# This is a Kubernetes deployment configuration file for a postgreSQL application named "postgreSQL-demo". It defines a deployment with 3 replicas, using the specified Docker image. 
 #The environment variables for the application are sourced from a ConfigMap named "flash-config". Note: The image name contains "flash-demo1", which may be a typo and should be verified
-# if it should be "flask-demo1".
+# if it should be "postgreSQL-demo1".
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-demo
-  namespace: test
+  name: postgreSQL-demo
+  namespace: dbcon
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flask-demo
+      app: postgreSQL-demo
   template:
     metadata:
       labels:
-        app: flask-demo
+        app: postgreSQL-demo
     spec:
       containers:
-      - name: flask-demo
-        image: nitindockerlearning/flash-demo1:latest # Check if "flash" should be "flask"
+      - name: postgreSQL-demo
+        image: nitindockerlearning/postgreSQL-demo:latest # Check if "flash" should be "postgreSQL"
         ports:
         - containerPort: 5000
         # --- FIXED: env must be indented under the container list item ---
@@ -26,15 +26,15 @@ spec:
         - name: APP_NAME
           valueFrom:
             configMapKeyRef:
-              name: flash-config
+              name: postgreSQL-config
               key: APP_NAME
         - name: ENVIRONMENT
           valueFrom:
             configMapKeyRef:
-              name: flash-config
+              name: postgreSQL-config
               key: ENVIRONMENT
         - name: MESSAGE
           valueFrom:
             configMapKeyRef:
-              name: flash-config
+              name: postgreSQL-config
               key: MESSAGE
