@@ -2,10 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: postgreSQL-config
+  name: postgresql-config
   namespace: dbcon
 
 data:
-  APP_NAME: "postgreSQL-Demo"
+  APP_NAME: "postgresql-Demo"
   ENVIRONMENT: "dbcon"
-  MESSAGE: "Welcome to postgreSQL-Demo Application from ConfigMap on 0616"
+  MESSAGE: "Welcome to postgresql-Demo Application from ConfigMap on 0616"
