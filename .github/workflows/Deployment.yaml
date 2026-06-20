@@ -1,0 +1,58 @@
+# This is a GitHub Actions workflow configuration file that defines a CI/CD pipeline for building, testing, and deploying a Flask application using Docker and Kubernetes.
+# The workflow is triggered on pushes and pull requests to the main branch. It includes steps for setting up Python, installing dependencies, running tests, building and pushing a Docker image,
+# and deploying the application to a Kubernetes cluster in a test namespace.
+
+name  : Build 
+on: 
+    push:
+        branches: [ db_conn_with_postgreSQL ]
+    pull_request:
+        branches: [ db_conn_with_postgreSQL ]
+
+    workflow_dispatch:
+
+jobs:
+   Deploy_to_test:
+        runs-on: self-hosted
+        steps: 
+          - uses: actions/checkout@v4
+
+          - name: K8s current context
+            run: |
+              echo "Checking Kubernetes context..."
+              kubectl config current-context
+
+          - name: Create test namespace
+            run: |
+               kubectl create namespace dbcon --dry-run=client -o yaml | kubectl apply -f -
+
+          - name: Deploy to Test Namespace
+            run: |
+              kubectl apply -f deployment.yaml -n dbcon
+              kubectl apply -f service.yaml -n dbcon
+
+          - name: Configure kubectl
+            run: |
+                echo "Configuring kubectl..."
+                if (!(Test-Path "$HOME\.kube")) {
+                    New-Item -ItemType Directory -Path "$HOME\.kube"
+                }
+                echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+                kubectl config view
+          - name: Verify Kubernetes
+            run: |
+                kubectl config current-context
+                kubectl get nodes
+          - name: Test cluster access
+            run: |
+              kubectl config current-context
+              kubectl cluster-info
+              kubectl get nodes
+
+          - name: Update deployment
+            run: |
+             kubectl set image deployment/postgresql postgresql-demo=nitindockerlearning/postgresql-demo:${{ github.sha }} -n dbcon
+
+
+
+                
