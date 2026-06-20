@@ -30,6 +30,7 @@ jobs:
             run: |
               kubectl apply -f deployment.yaml -n dbcon
               kubectl apply -f service.yaml -n dbcon
+              kubectl apply -f configmap.yaml -n dbcon
 
           - name: Configure kubectl
             run: |
@@ -51,7 +52,7 @@ jobs:
 
           - name: Update deployment
             run: |
-             kubectl set image deployment/postgresql-demo postgresql-demo=nitindockerlearning/postgresql-demo:${{ github.sha }} -n dbcon
+             kubectl set image deployment/postgresql-demo postgresql-demo=nitindockerlearning/postgresql-demo:latest -n dbcon
 
 
 
