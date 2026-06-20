@@ -30,7 +30,7 @@ jobs:
             run: |
               kubectl apply -f deployment.yaml -n dbcon
               kubectl apply -f service.yaml -n dbcon
-              kubectl apply -f configmap.yaml -n dbcon
+              kubectl apply -f postgres-secret.yaml -n dbcon
 
           - name: Configure kubectl
             run: |
