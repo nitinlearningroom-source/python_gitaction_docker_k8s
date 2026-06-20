@@ -2,7 +2,7 @@
 # The workflow is triggered on pushes and pull requests to the main branch. It includes steps for setting up Python, installing dependencies, running tests, building and pushing a Docker image,
 # and deploying the application to a Kubernetes cluster in a test namespace.
 
-name  : Build 
+name  : Deploy to K8s 
 on: 
     push:
         branches: [ db_conn_with_postgreSQL ]
@@ -51,7 +51,7 @@ jobs:
 
           - name: Update deployment
             run: |
-             kubectl set image deployment/postgresql postgresql-demo=nitindockerlearning/postgresql-demo:${{ github.sha }} -n dbcon
+             kubectl set image deployment/postgresql-demo postgresql-demo=nitindockerlearning/postgresql-demo:${{ github.sha }} -n dbcon
 
 
 
