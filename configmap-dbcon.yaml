@@ -1,0 +1,14 @@
+# This is a Kubernetes ConfigMap configuration file that defines a ConfigMap named "flask-config" in the "test" namespace. It contains key-value pairs for application configuration, 
+# including the application name, environment, and a welcome message.
+
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: postgresql-demo
+  namespace: { ? { .Release.Namespace } }
+
+data:
+  APP_NAME: "Flask-Demo"
+  ENVIRONMENT: "Test"
+  MESSAGE: "Welcome to Flask-Demo Application from ConfigMap in Test Namespace 06/18"
