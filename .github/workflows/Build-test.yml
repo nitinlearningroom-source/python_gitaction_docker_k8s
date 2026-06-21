@@ -4,7 +4,11 @@
 
 name  : Build and Deploy
 on:  
-    workflow_dispatch:
+      push:
+          branches: [ main ]
+      pull_request:
+          branches: [ main ]
+      workflow_dispatch:
 
 jobs:
    build:
@@ -50,8 +54,8 @@ jobs:
                file: ./Dockerfile
                push: true
                tags: |
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:latest
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
+                 ${{ secrets.DOCKER_USERNAME }}/argo_cd_docker:latest
+                 ${{ secrets.DOCKER_USERNAME }}/argo_cd_docker:${{ github.sha }}
    Deploy_to_test:
         needs: build
         runs-on: self-hosted
@@ -93,12 +97,12 @@ jobs:
 
           - name: Update deployment
             run: |
-             kubectl set image deployment/flask-demo flask-demo=nitindockerlearning/flash-demo1:${{ github.sha }} -n test
+             kubectl set image deployment/argo_cd_k8s argo_cd_k8s=nitindockerlearning/argo_cd_k8s:${{ github.sha }} -n test
 
           - name: Verify rollout git ad
             run: |
-              kubectl rollout status deployment/flask-demo -n test
-              kubectl rollout restart deployment/flask-demo -n test
+              kubectl rollout status deployment/argo_cd_k8s -n test
+              kubectl rollout restart deployment/argo_cd_k8s -n test
 
 
                 

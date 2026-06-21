@@ -2,10 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: flash-config
+  name: flask-config
   namespace: test
 
 data:
-  APP_NAME: "Flash-Demo"
+  APP_NAME: "flask-Demo"
   ENVIRONMENT: "Test"
-  MESSAGE: "Welcome to Flash-Demo Application from ConfigMap on 0616"
+  MESSAGE: "Welcome to flask-Demo Application from ConfigMap on 0616"
