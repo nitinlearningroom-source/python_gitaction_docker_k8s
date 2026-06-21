@@ -5,10 +5,10 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: flask-config
+  name: argo_cd-config
   namespace: { ? { .Release.Namespace } }
 
 data:
-  APP_NAME: "flask-Demo"
+  APP_NAME: "argo_cd"
   ENVIRONMENT: "Test"
-  MESSAGE: "Welcome to flask-Demo Application from ConfigMap in Test Namespace 06/18"
+  MESSAGE: "Welcome to argo_cd Application from ConfigMap in Test Namespace 06/18"
