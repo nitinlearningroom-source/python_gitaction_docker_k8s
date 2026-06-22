@@ -4,7 +4,12 @@
 
 name  : Build and Deploy
 on:  
-    workflow_dispatch:
+  push:
+    branches: [ new_image_creation ] 
+  pull_request:
+    branches: [ new_image_creation ]
+
+  workflow_dispatch:
 
 jobs:
    build:
@@ -50,8 +55,8 @@ jobs:
                file: ./Dockerfile
                push: true
                tags: |
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:latest
-                 ${{ secrets.DOCKER_USERNAME }}/flash-demo1:${{ github.sha }}
+                 ${{ secrets.DOCKER_USERNAME }}/flask-docker-image:latest
+                 ${{ secrets.DOCKER_USERNAME }}/flask-docker-image:${{ github.sha }}
    Deploy_to_test:
         needs: build
         runs-on: self-hosted
@@ -93,9 +98,9 @@ jobs:
 
           - name: Update deployment
             run: |
-             kubectl set image deployment/flask-demo flask-demo=nitindockerlearning/flash-demo1:${{ github.sha }} -n test
+             kubectl set image deployment/flask-deployment flask-deployment=nitindockerlearning/flask-docker-image:${{ github.sha }} -n test
 
           - name: Verify rollout git ad
             run: |
-              kubectl rollout status deployment/flask-demo -n test
-              kubectl rollout restart deployment/flask-demo -n test
+              kubectl rollout status deployment/flask-deployment -n test
+              kubectl rollout restart deployment/flask-deployment -n test

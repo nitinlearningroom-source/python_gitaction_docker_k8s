@@ -5,10 +5,10 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: flash-config
+  name: flask-config
   namespace: { ? { .Release.Namespace } }
 
 data:
-  APP_NAME: "Flash-Demo"
+  APP_NAME: "Flask-Demo"
   ENVIRONMENT: "Test"
-  MESSAGE: "Welcome to Flash-Demo Application from ConfigMap in Test Namespace 06/18"
+  MESSAGE: "Welcome to Flask-Demo Application from ConfigMap in Test Namespace 06/18"

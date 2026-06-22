@@ -1,24 +1,24 @@
 # This is a Kubernetes deployment configuration file for a Flask application named "flask-demo". It defines a deployment with 3 replicas, using the specified Docker image. 
 #The environment variables for the application are sourced from a ConfigMap named "flask-config". Note: The image name contains "flask-demo1", which may be a typo and should be verified
-# if it should be "flask-demo1".
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo_cd_k8s
+  name: flask-deployment
   namespace: test
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: argo_cd_k8s
+      app: flask-deployment
   template:
     metadata:
       labels:
-        app: argo_cd_k8s
+        app: flask-deployment
     spec:
       containers:
-      - name: argo_cd_k8s
-        image: nitindockerlearning/argo_cd_docker:latest # Check if "flask" should be "flask"
+      - name: flask-deployment
+        image: nitindockerlearning/flask-docker-image:v1 # Check if "flask" should be "flash"
         ports:
         - containerPort: 5000
         # --- FIXED: env must be indented under the container list item ---
@@ -26,15 +26,15 @@ spec:
         - name: APP_NAME
           valueFrom:
             configMapKeyRef:
-              name: argo_cd-config
+              name: flask-config
               key: APP_NAME
         - name: ENVIRONMENT
           valueFrom:
             configMapKeyRef:
-              name: argo_cd-config
+              name: flask-config
               key: ENVIRONMENT
         - name: MESSAGE
           valueFrom:
             configMapKeyRef:
-              name: argo_cd-config
+              name: flask-config
               key: MESSAGE
