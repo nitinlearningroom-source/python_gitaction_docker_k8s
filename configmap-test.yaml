@@ -6,7 +6,7 @@ kind: ConfigMap
 
 metadata:
   name: flask-config
-  namespace: { ? { .Release.Namespace } }
+  namespace: test
 
 data:
   APP_NAME: "Flask-Demo"
